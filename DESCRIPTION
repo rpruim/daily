@@ -1,0 +1,24 @@
+Package: calendar
+Type: Package
+Title: Calendar Utilities
+Version: 0.1.0
+Author: Randall Pruim
+Maintainer: Randall Pruim <rpruim@gmail.com>
+Description: Utilities for generating HTML/CSS calendars for classes.
+Encoding: UTF-8
+LazyData: true
+Imports:                                                                        
+    lazyeval,                                                                   
+    readr,                                                                      
+    magrittr,
+    tidyr,                                                                      
+    dplyr,                                                                      
+    utils,                                                                      
+    glue,                                                                       
+    stringr,                                                                    
+    lubridate                                                                  
+License: GPL-3
+RoxygenNote: 6.1.1                                                              
+Roxygen: list(markdown = TRUE)                                                  
+URL: https://github.com/rpruim/calendar                                              
+BugReports: https://github.com/rpruim/calendar/issues 

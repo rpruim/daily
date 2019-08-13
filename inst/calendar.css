@@ -1,0 +1,193 @@
+
+<style type="text/css">
+span.headerColor {
+	color: #906;
+	color: #966;
+	background: #fff;
+}
+
+span.bigger {font-size: larger}
+span.smaller {font-size: smaller}
+
+span.topic, span.Topic {
+	color: black;
+	font-size: medium;
+	font-weight: bold;
+/* #	font-variant: small-caps; */
+}
+
+span.topic a:link, span.topic a:visited{
+	color: blue;
+}
+
+span.Topic a:link, span.topic a:visited{
+	color: blue;
+}
+
+span.reading, span.Reading {
+	font-style: italic;
+	color: #36c;
+}
+span.reading a:link, span.reading a:visited{
+	color: blue;
+}
+span.Reading a:link, span.reading a:visited{
+	color: blue;
+}
+
+span.vocab {
+	color: purple;
+}
+
+span.notes {
+	color: green;
+}
+
+span.R {
+	color: purple;
+	font-family: "Lucida Console", "Courier New", Monospace;
+}
+
+span.Note {
+	color: green;
+}
+
+span.activity {
+	color: #c63;
+}
+span.Activity {
+	color: #c63;
+}
+span.activity a:link, span.activity a:visited{
+	color: brown;
+}
+
+span.Activity a:link, span.activity a:visited{
+	color: brown;
+}
+span.due {
+	/* color: #969; */
+	color: red;
+}
+span.due a:link, span.due a:visited{
+	color: red;
+}
+
+body, td{
+	color: #000;
+	/* background: #fff; */
+	font-family: sans-serif, arial, helvetica, verdana;
+	}
+
+body td{
+	color: #000;
+	background: #ccc;
+	font-family: sans-serif, arial, helvetica, verdana;
+	}
+
+body td.odd{
+	color: #000;
+	background: #fff;
+	font-family: sans-serif, arial, helvetica, verdana;
+	}
+
+body td.even{
+	color: #000;
+	background: #ccc;
+	font-family: sans-serif, arial, helvetica, verdana;
+	}
+
+td {
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+}
+
+th{
+	color: #000;
+	/* background: #fff; */
+	font-family: sans-serif, arial, helvetica, verdana;
+	}
+
+/*hr {text-align: center; margin-left: 25%; width: 50%; margin-right: 25%}*/
+
+hr {
+	color: #906;
+	color: #966;
+	background: #fff;
+}
+
+
+h1, h2, h3, h4{
+	color: #906;
+	color: #336;
+	background: #fff;
+}
+
+
+h1 a:link, h1 a:visited, h2 a:link, h2 a:visited, h3 a:link, h3 a:visited {
+	color: #36c;
+	color: #66c;
+	color: #339;
+	background: #fff;
+	text-decoration: none;
+}
+
+h1 {	 font-size: x-large;
+}
+
+h1 span.smaller{
+	color: #000;
+	background: #fff;
+	font-size: large;
+}
+
+h1 span.smallest{
+	color: #000;
+	background: #fff;
+	font-size: medium;
+}
+
+h2 {	font-size: large;
+	font-style: normal;
+}
+
+h2 span.smaller, h2 span.smallest{
+	color: #000;
+	background: #fff;
+	font-size: medium;
+}
+
+h3 { 	font-size: medium;
+	font-style: normal;
+}
+
+h3 span.smaller, h3 span.smallest{
+	color: #000;
+	background: #fff;
+}
+
+h4 { 	font-size: medium;
+	font-style: italic;
+}
+
+
+a:link {
+	color: #36c;	/* #06c */
+	color: #06c;	/* #06c */
+	background: #fff;
+	text-decoration: none;
+}
+
+a:visited {
+	/*color: #09c; color: #96c; #936 ; #939
+	background: #fff;*/
+	color: #969;
+	background: #fff;
+}
+
+strong {
+	color: #906;
+	background: #fff;
+}
+</style>
