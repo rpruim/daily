@@ -11,49 +11,44 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+library(calendar)
+library(dplyr)
 ```
+
 # calendar
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of calendar is to ...
 
 ## Installation
 
-You can install the released version of calendar from [CRAN](https://CRAN.R-project.org) with:
+You can install from [GitHub](https://github.com/) with:
 
-``` r
-install.packages("calendar")
-```
-
-And the development version from [GitHub](https://github.com/) with:
-
-``` r
+```{r, eval = FALSE}
 # install.packages("devtools")
 devtools::install_github("rpruim/calendar")
 ```
-## Example
 
-This is a basic example which shows you how to solve a common problem:
+## Example
 
 ```{r example}
 library(calendar)
-## basic example code
+library(dplyr)
+cal <-
+  daily2cal(
+    path  = system.file("daily.txt", package = "calendar"),
+    start = lubridate::mdy("1/28/2019"),
+    mask  = c(2, 4, 6)
+  ) 
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
+```{r html, results = "asis"}
+calendar_css() %>% cat()
+cal %>% html_calendar(show = 2:6) %>% cat()
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
+```{r gg, fig.width = 9, fig.height = 3, warning = FALSE}
+cal %>% gg_calendar(show = 2:6, size = 4)
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!

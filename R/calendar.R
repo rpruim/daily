@@ -10,14 +10,14 @@ calendar_css <- function() {
   paste(lines, collapse = "\n")
 }
 
-#' Create HTML Calendar
+#' Create Calendar from Daily File
 #'
-#' Create HTML Calendar
+#' Create Calendar from Daily File
 #'
-#' @import magrittr
 #' @importFrom lubridate today floor_date mdy weeks month wday mday days
 #' @importFrom dplyr mutate arrange filter select group_by ungroup
 #' @importFrom dplyr slice pull do right_join bind_rows
+#' @importFrom dplyr %>%
 #' @importFrom glue glue
 #' @importFrom stringr str_split
 #' @import ggplot2
@@ -25,10 +25,11 @@ calendar_css <- function() {
 #' @param path  path to "daily" file
 #' @param start start date
 #' @param end   end date
-#' @param mask  a numeric vector indicating which days of the week to display. (1 = Sunday)
-#'
+#' @param mask  a numeric vector indicating which days of the week to include. (1 = Sunday)
+#' @seealso [html_calendar()], [gg_calendar()]
+#' @return a data frame representing the calendar
 #' @export
-calendar <-
+daily2cal <-
   function(
     path = "daily.txt",
     start = lubridate::today() - lubridate::weeks(2),
@@ -138,6 +139,14 @@ days_til_next <- function(mask) {
   sapply(1:7, function(x) min(mask[mask > x]) - x)
 }
 
+#' Create gg Calendar
+#'
+#' Create gg calendar
+#'
+#' @param calendar a calendar object
+#' @param show a numeric vector of days to show (Sunday = 1)
+#' @param size a number for scaling text size
+#' @return a ggplot object
 #' @export
 gg_calendar <- function(calendar, show = 1:7, size = 3) {
   ggplot(data = calendar %>% filter(wday(date) %in% show)) +
@@ -148,7 +157,7 @@ gg_calendar <- function(calendar, show = 1:7, size = 3) {
               color = "navy", hjust = 0, size = size) +
     geom_text(aes(y = 2, x = 0, label = Note),
               color = "forestgreen", hjust = 0, size = size) +
-    facet_grid(week ~ wday(date)) +
+    facet_grid(week ~ wday(date, label = TRUE)) +
     lims(y = c(0,5), x = c(-1,5)) +
     labs(x = "", y = "") +
     theme_bw() +
@@ -158,34 +167,51 @@ gg_calendar <- function(calendar, show = 1:7, size = 3) {
       axis.ticks = element_blank())
 }
 
+
+#' Create HTML Calendar
+#'
+#' Create HTML Calendar
+#'
+#' @param calendar a calendar object
+#' @param show a numeric vector of days to show (Sunday = 1)
+#' @param items a character vector of items to display (or NULL for all)
+#' @param width width of HTML table used for calendar.
+#' @return a character string of HTML code for the calendar
 #' @export
-html_calendar <- function(calendar, show = 1:7, items = NULL) {
-  Cal <- calendar %>% filter(wday(date) %in% show)
-  Cal <- Cal %>%
-    dplyr::group_by(date, week) %>%
-    dplyr::do(html_reduce(.)) %>%
-    dplyr::ungroup() %>%
-    dplyr::arrange(date)
-  last_week <- -Inf
-  res <- c("<table border=1 width=95%><tr>")
-  for (s in show) {
-    res <- c(res, '<col width = "1*">')  # equal widths for each column
-  }
-  res <- c(res, "<tr>")
-  for (wday in c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")[show]) {
-    res <- c(res, glue::glue("<th>{day}</th>", day = wday))
-  }
-  for (i in 1:nrow(Cal)) {
-    if (Cal[i, "week"] > last_week) {
-      res <- c(res, paste("<!-- ", Cal[i, "week"], ">", last_week, "-->"))
-      res <- c(res, "</tr><tr>")
-      last_week <- Cal[i, "week"]
+html_calendar <-
+  function(calendar, show = 1:7, items = NULL, width = "95%") {
+    Cal <- calendar %>% filter(wday(date) %in% show)
+    Cal <- Cal %>%
+      dplyr::group_by(date, week) %>%
+      dplyr::do(html_reduce(.)) %>%
+      dplyr::ungroup() %>%
+      dplyr::arrange(date)
+    last_week <- -Inf
+    res <- paste0("<table border=1 width=", width, ">")
+
+    res <- c(res, '<colgroup>')
+    for (s in show) {
+      res <- c(res, '<col width = "10%">')  # equal widths for each column
     }
-    res <- c(res, render_day(Cal, i, items))
+    res <- c(res, '</colgroup>')
+
+    res <- c(res, "<thead><tr>")
+    for (wday in c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")[show]) {
+      res <- c(res, glue::glue("<th>{day}</th>", day = wday))
+    }
+    res <- c(res, "</tr></thead><tbody><tr>")
+
+    for (i in 1:nrow(Cal)) {
+      if (Cal[i, "week"] > last_week) {
+        res <- c(res, paste("<!-- ", Cal[i, "week"], ">", last_week, "-->"))
+        res <- c(res, "</tr><tr>")
+        last_week <- Cal[i, "week"]
+      }
+      res <- c(res, render_day(Cal, i, items))
+    }
+    res <- c(res, "</tr></tbody></table>")
+    res %>% paste(collapse = "\n")
   }
-  res <- c(res, "</tr></table>")
-  res %>% paste(collapse = "\n")
-}
 
 render_day <- function(calendar, row, items) {
   available_items <- setdiff(names(calendar), c("date", "week"))
@@ -226,10 +252,12 @@ render_day <- function(calendar, row, items) {
   res
 }
 
+#' @importFrom stats na.omit
+
 html_reduce <- function(data) {
   lapply(
     data %>% dplyr::select(-date, -week),
-    function(x) paste0(unique(na.omit(x)), collapse = "<br>")
+    function(x) paste0(unique(stats::na.omit(x)), collapse = "<br>")
   ) %>%
     as.data.frame(stringsAsFactors = FALSE)
 }

@@ -1,0 +1,37 @@
+Some Course
+
+Some Course: Course Title
+Spring 2019 -- 1:30 pm
+
+days:: MWF
+
+items::
+Topic;  b;      color=black;    T:
+Read;   i;      color=blue;     R:
+Assign; i;      color=green;    A:
+HW;     t;      color=green;    A:
+Due;    t;      color=red> Due: <!-- --;        D:
+Note;   b;      color=green;    N:
+Vocab;  t;      color=purple;   V:
+
+
+===01/30/2019
+Topic:: Day 1: Introduction
+Read:: Syllabus
+
+===
+Topic:: Day 2: Let's Get Started
+Read:: Chapter 1
+
+Note:: This is a note
+
+===
+Topic:: Day 3: Time to Work
+Read:: Chapter 2
+
+===endofcal
+
+===
+Topic:: Day 4
+
+This is ignored because it is below the end of calendar marker

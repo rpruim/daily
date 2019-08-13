@@ -7,18 +7,18 @@ Maintainer: Randall Pruim <rpruim@gmail.com>
 Description: Utilities for generating HTML/CSS calendars for classes.
 Encoding: UTF-8
 LazyData: true
-Imports:                                                                        
+Imports: 
     lazyeval,                                                                   
     readr,                                                                      
-    magrittr,
     tidyr,                                                                      
     dplyr,                                                                      
     utils,                                                                      
     glue,                                                                       
     stringr,                                                                    
-    lubridate                                                                  
+    lubridate,
+    ggplot2
 License: GPL-3
-RoxygenNote: 6.1.1                                                              
 Roxygen: list(markdown = TRUE)                                                  
 URL: https://github.com/rpruim/calendar                                              
 BugReports: https://github.com/rpruim/calendar/issues 
+RoxygenNote: 6.1.1
