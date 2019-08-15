@@ -119,12 +119,14 @@
 <h3 class="hasAnchor">
 <a href="#example-daily-file" class="anchor"></a>Example daily file</h3>
 <p>Here is an example daily file (rendered below).</p>
-<pre><code>Some Course
-
-Some Course: Course Title
-Spring 2019 -- 1:30 pm
-
-days:: MWF
+<pre><code>---
+title: Some Course
+semester: Spring 2019
+time: 1:30 pm (2:30 on Fridays)
+days: MWF
+start: 01/30/2019
+end:   05/15/2019
+---
 
 
 ===01/30/2019
@@ -157,20 +159,18 @@ This is ignored because it is below the end of calendar marker</code></pre>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">cal &lt;-</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/daily2cal.html">daily2cal</a></span>(</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="dt">path  =</span> <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"daily.txt"</span>, <span class="dt">package =</span> <span class="st">"calendar"</span>),</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="dt">start =</span> lubridate<span class="op">::</span><span class="kw"><a href="http://lubridate.tidyverse.org/reference/ymd.html">mdy</a></span>(<span class="st">"1/28/2019"</span>),</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">    <span class="dt">mask  =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">  ) </a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(cal)</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; Observations: 8</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; Variables: 6</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt; $ date  &lt;date&gt; 2019-01-28, 2019-01-29, 2019-01-30, 2019-01-31, 2019-02-0…</span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; $ Topic &lt;chr&gt; NA, NA, "Day 1: Introduction", NA, "Day 2: Let's Get Start…</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; $ Read  &lt;chr&gt; NA, NA, "Syllabus", NA, "Chapter 1", NA, NA, "Chapter 2"</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; $ Note  &lt;chr&gt; NA, NA, NA, NA, "This is a note", NA, NA, NA</span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; $ Due   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, "Assignment 1"</span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt; $ week  &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 2</span></a></code></pre></div>
-<p>The <code>mask</code> argument provides a default set of days. Each time a bare <code>===</code> is encountered, the calendar is advanced to the next day in <code>mask</code> (Sunday = 1, Saturday = 7). If a date is specified, it is used, regardless of the value of <code>mask</code>.</p>
+<a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="dt">path  =</span> <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"daily.txt"</span>, <span class="dt">package =</span> <span class="st">"calendar"</span>)</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">  ) </a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(cal)</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; Observations: 8</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; Variables: 6</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; $ date  &lt;date&gt; 2019-01-28, 2019-01-29, 2019-01-30, 2019-01-31, 2019-02-0…</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; $ Topic &lt;chr&gt; NA, NA, "Day 1: Introduction", NA, "Day 2: Let's Get Start…</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt; $ Read  &lt;chr&gt; NA, NA, "Syllabus", NA, "Chapter 1", NA, NA, "Chapter 2"</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; $ Note  &lt;chr&gt; NA, NA, NA, NA, "This is a note", NA, NA, NA</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; $ Due   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, "Assignment 1"</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; $ week  &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 2</span></a></code></pre></div>
+<p>Each time a bare <code>===</code> is encountered, the calendar is advanced to the next <em>default</em> day (see options below). If a date is specified, it is used, regardless of which days are default days.</p>
 </div>
 <div id="step-3-rendering-a-calendar" class="section level2">
 <h2 class="hasAnchor">
@@ -448,6 +448,20 @@ Fri
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">cal <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/gg_calendar.html">gg_calendar</a></span>(<span class="dt">show =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">size =</span> <span class="dv">4</span>)</a></code></pre></div>
 <p><img src="calendar_files/figure-html/gg-1.png" width="100%"></p>
 </div>
+<div id="options" class="section level2">
+<h2 class="hasAnchor">
+<a href="#options" class="anchor"></a>Options</h2>
+<p>The following options may be specified as arguments to <code><a href="../reference/daily2cal.html">daily2cal()</a></code> or as part of the YAML header of the daily file.</p>
+<ul>
+<li>
+<code>days</code>: default days. Can be specified as a numeric vector or as a character string (1 = N = Sunday, 5 = R = Thursday, 7 = S = Saturday, etc.)</li>
+<li>
+<code>start</code>: start date for the calendar (“mm/dd/yyyy” format in YAML, date object as argument)</li>
+<li>
+<code>end</code>: start date for the calendar (“mm/dd/yyyy” format in YAML, date object as argument)</li>
+</ul>
+<p>Other elements of the YAML header are ignored currently, but can be used to record information about your calendar.</p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -459,6 +473,7 @@ Fri
       <li><a href="#step-1-daily-files">Step 1: Daily files</a></li>
       <li><a href="#step-2-converting-to-a-data-frame">Step 2: Converting to a data frame</a></li>
       <li><a href="#step-3-rendering-a-calendar">Step 3: Rendering a calendar</a></li>
+      <li><a href="#options">Options</a></li>
       </ul>
 </div>
       </div>

@@ -10,10 +10,29 @@ calendar_css <- function() {
   paste(lines, collapse = "\n")
 }
 
+days2mask <- function(x) {
+  if (is.character(x)) {
+    return(
+      which(
+        c("N", "M", "T", "W", "R", "F", "S") %in%
+          strsplit(x, split = "")[[1]]
+        )
+    )
+  }
+  if (is.numeric(x)) {
+    x <- unique(x %% 7)
+    x[x==0] <- 7
+    return(x)
+  }
+  NULL
+}
+
+
 #' Create Calendar from Daily File
 #'
 #' Create Calendar from Daily File
 #'
+#' @importFrom rlang %||%
 #' @importFrom lubridate today floor_date mdy weeks month wday mday days
 #' @importFrom dplyr mutate arrange filter select group_by ungroup
 #' @importFrom dplyr slice pull do right_join bind_rows
@@ -25,20 +44,37 @@ calendar_css <- function() {
 #' @param path  path to "daily" file
 #' @param start start date
 #' @param end   end date
-#' @param mask  a numeric vector indicating which days of the week to include. (1 = Sunday)
+#' @param days a character string or a numeric vector indicating
+#' which days of the week to use by default.
+#' (1 = N = Sunday, 5 = R = Thursday, 7 = S = Saturday)
 #' @seealso [html_calendar()], [gg_calendar()]
 #' @return a data frame representing the calendar
 #' @export
 daily2cal <-
   function(
-    path = "daily.txt",
-    start = lubridate::today() - lubridate::weeks(2),
-    end   = lubridate::today() + lubridate::weeks(4),
-    mask = 2:6
+    path  = "daily.txt",
+    start = NULL,
+    end   = NULL,
+    days  = NULL
   )
   {
     current_date  <- NA
     Cal <- data.frame(date = NA) # , Topic = NA, note = NA)
+    options <- rmarkdown::yaml_front_matter(path)
+
+    # determine mask (ie, default days)
+    mask <- days2mask(days) %||% days2mask(options$days) %||% 1:7
+
+    start <-
+      start %||%
+      lubridate::mdy(options$start) %||%
+      (lubridate::today() - lubridate::weeks(2))
+
+    end <-
+      end %||%
+      lubridate::mdy(options$end) %||%
+      (lubridate::today() + lubridate::weeks(4))
+
     lines <- getSrcLines(srcfile(path), 1, 10000)
     state = 0
     current_row <- data.frame(date = current_date)

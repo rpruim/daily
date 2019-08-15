@@ -4,9 +4,8 @@
 \alias{daily2cal}
 \title{Create Calendar from Daily File}
 \usage{
-daily2cal(path = "daily.txt", start = lubridate::today() -
-  lubridate::weeks(2), end = lubridate::today() + lubridate::weeks(4),
-  mask = 2:6)
+daily2cal(path = "daily.txt", start = NULL, end = NULL,
+  days = NULL)
 }
 \arguments{
 \item{path}{path to "daily" file}
@@ -15,7 +14,9 @@ daily2cal(path = "daily.txt", start = lubridate::today() -
 
 \item{end}{end date}
 
-\item{mask}{a numeric vector indicating which days of the week to include. (1 = Sunday)}
+\item{days}{a character string or a numeric vector indicating
+which days of the week to use by default.
+(1 = N = Sunday, 5 = R = Thursday, 7 = S = Saturday)}
 }
 \value{
 a data frame representing the calendar

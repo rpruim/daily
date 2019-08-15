@@ -1,9 +1,11 @@
-Some Course
-
-Some Course: Course Title
-Spring 2019 -- 1:30 pm
-
-days:: MWF
+---
+title: Some Course
+semester: Spring 2019
+time: 1:30 pm (2:30 on Fridays)
+days: MWF
+start: 01/30/2019
+end:   05/15/2019
+---
 
 
 ===01/30/2019

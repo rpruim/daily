@@ -117,9 +117,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>daily2cal</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"daily.txt"</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/today.html'>today</a></span>() -
-  <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/period.html'>weeks</a></span>(<span class='fl'>2</span>), <span class='kw'>end</span> <span class='kw'>=</span> <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/today.html'>today</a></span>() + <span class='kw pkg'>lubridate</span><span class='kw ns'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/period.html'>weeks</a></span>(<span class='fl'>4</span>),
-  <span class='kw'>mask</span> <span class='kw'>=</span> <span class='fl'>2</span>:<span class='fl'>6</span>)</pre>
+    <pre class="usage"><span class='fu'>daily2cal</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"daily.txt"</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>end</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>days</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -137,8 +136,10 @@
       <td><p>end date</p></td>
     </tr>
     <tr>
-      <th>mask</th>
-      <td><p>a numeric vector indicating which days of the week to include. (1 = Sunday)</p></td>
+      <th>days</th>
+      <td><p>a character string or a numeric vector indicating
+which days of the week to use by default.
+(1 = N = Sunday, 5 = R = Thursday, 7 = S = Saturday)</p></td>
     </tr>
     </table>
     
