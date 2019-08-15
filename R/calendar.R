@@ -5,7 +5,7 @@
 #'
 #' @export
 calendar_css <- function() {
-  path <- system.file("css", "calendar.css", package="rjp")
+  path <- system.file("css", "calendar.css", package="calendar")
   lines <- getSrcLines(srcfile(path), 1, 10000)
   paste(lines, collapse = "\n")
 }
