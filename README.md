@@ -21,15 +21,6 @@ devtools::install_github("rpruim/calendar")
 ``` r
 library(calendar)
 library(dplyr)
-cal <-
-  daily2cal(
-    path  = system.file("daily.txt", package = "calendar"),
-    start = lubridate::mdy("1/28/2019"),
-    mask  = c(2, 4, 6)
-  ) 
-```
-
-``` r
 calendar_css() %>% cat()
 ```
 
@@ -58,7 +49,7 @@ span.Topic a:link, span.Topic a:visited{
     color: blue;
 }
 
-span.reading, span.Reading {
+span.reading, span.Reading, span.Read, span.reading {
     font-style: italic;
     color: #36c;
 }
@@ -66,6 +57,13 @@ span.reading a:link, span.reading a:visited{
     color: blue;
 }
 span.Reading a:link, span.Reading a:visited{
+    color: blue;
+}
+
+span.read a:link, span.read a:visited{
+    color: blue;
+}
+span.Read a:link, span.Read a:visited{
     color: blue;
 }
 
@@ -109,6 +107,18 @@ span.due a:link, span.due a:visited{
 
 span.Due a:link, span.Due a:visited{
     color: red;
+}
+
+span.hw, span.HW {
+    color: green;
+}
+
+span.hw a:link, span.hw a:visited{
+    color: green;
+}
+
+span.HW a:link, span.HW a:visited{
+    color: green;
 }
 
 body, td{
@@ -231,7 +241,13 @@ strong {
 </style>
 
 ``` r
-cal %>% html_calendar(show = 2:6) %>% cat()
+cal <-
+  daily2cal(
+    path  = system.file("daily.txt", package = "calendar"),
+    start = lubridate::mdy("1/28/2019"),
+    mask  = c(2, 4, 6)
+  ) %>%
+  html_calendar(show = 2:6) %>% cat()
 ```
 
 <table border=1 width=95%>
@@ -342,8 +358,8 @@ note</span><br><span class="Due"></span><br><br>
 
 2/4<br><span class="Topic">Day 3: Time to
 Work</span><br><span class="Read">Chapter
-2</span><br><span class="Note">indented
-note</span><br><span class="Due">Assignment 1</span><br><br>
+2</span><br><span class="Note"></span><br><span class="Due">Assignment
+1</span><br><br>
 
 </td>
 
@@ -353,8 +369,5 @@ note</span><br><span class="Due">Assignment 1</span><br><br>
 
 </table>
 
-``` r
-cal %>% gg_calendar(show = 2:6, size = 4)
-```
-
-<img src="man/figures/README-gg-1.png" width="100%" />
+See the package vignette for details about daily file syntax and
+rendering options.

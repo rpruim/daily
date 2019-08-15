@@ -1,0 +1,92 @@
+---
+title: "Using the calendar package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{calendar}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  out.width = "100%"
+)
+```
+
+```{r setup}
+library(calendar)
+library(dplyr)
+```
+
+## Overview
+
+The primary use case consists of three steps
+
+1. Create a daily file (a text file with simple markup)
+2. Convert the daily file into a data fram with `daily2cal()`
+3. Render the calendar as HTML or ggplot.
+
+## Step 1: Daily files
+
+Calendar information can be culled from a "daily file" with with 
+following structure.
+
+* Days are separated by an initial `===`
+* `===` may optionally be followed by a date
+* `===endofcal` terminates the calendar.  All lines after are ignored
+* `<item type>:: <item information>` is rendered as information on
+a specific date.  For the HTML version, this is converted into a span
+so that the appearance can be altered using CSS.
+
+
+### Example daily file
+
+Here is an example daily file (rendered below).
+
+```{r, echo = FALSE, comment = NA}
+system.file("daily.txt", package = "calendar") %>%
+  readLines() %>%
+  paste(collapse = "\n") %>%
+  cat() 
+```
+
+## Step 2: Converting to a data frame
+
+`daily2cal()` converts the daily file into a data frame.
+To use your own calendar, replace the `path` argument below with
+the path to your daily file.
+
+```{r example}
+library(calendar)
+library(dplyr)
+cal <-
+  daily2cal(
+    path  = system.file("daily.txt", package = "calendar"),
+    start = lubridate::mdy("1/28/2019"),
+    mask  = c(2, 4, 6)
+  ) 
+glimpse(cal)
+```
+
+The `mask` argument provides a default set of days.  Each time a 
+bare `===` is encountered, the calendar is advanced to the next day
+in `mask` (Sunday = 1, Saturday = 7). If a date is specified,
+it is used, regardless of the value of `mask`.
+
+## Step 3: Rendering a calendar
+
+The calendar can be rendered as HTML or as a ggplot.
+The `show` argument determines which days are displayed (Sunday = 1, 
+Saturday = 7).
+
+```{r html, results = "asis"}
+calendar_css() %>% cat()
+cal %>% html_calendar(show = 2:6) %>% cat()
+```
+
+```{r gg, fig.width = 9, fig.height = 3, warning = FALSE}
+cal %>% gg_calendar(show = 2:6, size = 4)
+```
+

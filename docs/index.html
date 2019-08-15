@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">calendar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -42,6 +42,9 @@
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="articles/calendar.html">Get started</a>
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
@@ -88,13 +91,7 @@
 <a href="#example" class="anchor"></a>Example</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(calendar)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">cal &lt;-</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="reference/daily2cal.html">daily2cal</a></span>(</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">    <span class="dt">path  =</span> <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"daily.txt"</span>, <span class="dt">package =</span> <span class="st">"calendar"</span>),</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">    <span class="dt">start =</span> lubridate<span class="op">::</span><span class="kw"><a href="http://lubridate.tidyverse.org/reference/ymd.html">mdy</a></span>(<span class="st">"1/28/2019"</span>),</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">    <span class="dt">mask  =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">  ) </a></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="reference/calendar_css.html">calendar_css</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>()</a></code></pre></div>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="reference/calendar_css.html">calendar_css</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>()</a></code></pre></div>
 <style type="text/css">
 span.headerColor {
     color: #906;
@@ -120,7 +117,7 @@ span.Topic a:link, span.Topic a:visited{
     color: blue;
 }
 
-span.reading, span.Reading {
+span.reading, span.Reading, span.Read, span.reading {
     font-style: italic;
     color: #36c;
 }
@@ -131,11 +128,18 @@ span.Reading a:link, span.Reading a:visited{
     color: blue;
 }
 
-span.vocab span.Vocab {
+span.read a:link, span.read a:visited{
+    color: blue;
+}
+span.Read a:link, span.Read a:visited{
+    color: blue;
+}
+
+span.vocab, span.Vocab {
     color: purple;
 }
 
-span.notes span.Notes {
+span.notes, span.Notes {
     color: green;
 }
 
@@ -144,11 +148,11 @@ span.R {
     font-family: "Lucida Console", "Courier New", Monospace;
 }
 
-span.Note span.note {
+span.Note, span.note {
     color: green;
 }
 
-span.activity span.Activity {
+span.activity, span.Activity {
     color: #c63;
 }
 
@@ -160,7 +164,7 @@ span.Activity a:link, span.Activity a:visited{
     color: brown;
 }
 
-span.due span.Due {
+span.due, span.Due {
     /* color: #969; */
     color: red;
 }
@@ -171,6 +175,18 @@ span.due a:link, span.due a:visited{
 
 span.Due a:link, span.Due a:visited{
     color: red;
+}
+
+span.hw, span.HW {
+    color: green;
+}
+
+span.hw a:link, span.hw a:visited{
+    color: green;
+}
+
+span.HW a:link, span.HW a:visited{
+    color: green;
 }
 
 body, td{
@@ -291,7 +307,13 @@ strong {
     background: #fff;
 }
 </style>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">cal <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/html_calendar.html">html_calendar</a></span>(<span class="dt">show =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">6</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">cal &lt;-</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="reference/daily2cal.html">daily2cal</a></span>(</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">    <span class="dt">path  =</span> <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"daily.txt"</span>, <span class="dt">package =</span> <span class="st">"calendar"</span>),</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">    <span class="dt">start =</span> lubridate<span class="op">::</span><span class="kw"><a href="http://lubridate.tidyverse.org/reference/ymd.html">mdy</a></span>(<span class="st">"1/28/2019"</span>),</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="dt">mask  =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="reference/html_calendar.html">html_calendar</a></span>(<span class="dt">show =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">6</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>()</a></code></pre></div>
 <table class="table table">
 <colgroup>
 <col width="10%">
@@ -321,31 +343,30 @@ Fri
 <tr><!--  1 > -Inf --></tr>
 <tr>
 <td class="odd">
-1/28<br><span class="Topic"></span><br><span class="Read"></span><br><span class="Note"></span><br><br>
+1/28<br><span class="Topic"></span><br><span class="Read"></span><br><span class="Note"></span><br><span class="Due"></span><br><br>
 </td>
 <td class="odd">
-1/29<br><span class="Topic"></span><br><span class="Read"></span><br><span class="Note"></span><br><br>
+1/29<br><span class="Topic"></span><br><span class="Read"></span><br><span class="Note"></span><br><span class="Due"></span><br><br>
 </td>
 <td class="odd">
-1/30<br><span class="Topic">Day 1: Introduction</span><br><span class="Read">Syllabus</span><br><span class="Note"></span><br><br>
+1/30<br><span class="Topic">Day 1: Introduction</span><br><span class="Read">Syllabus</span><br><span class="Note"></span><br><span class="Due"></span><br><br>
 </td>
 <td class="odd">
-1/31<br><span class="Topic"></span><br><span class="Read"></span><br><span class="Note"></span><br><br>
+1/31<br><span class="Topic"></span><br><span class="Read"></span><br><span class="Note"></span><br><span class="Due"></span><br><br>
 </td>
 <td class="even">
-2/1<br><span class="Topic">Day 2: Let’s Get Started</span><br><span class="Read">Chapter 1</span><br><span class="Note">This is a note</span><br><br>
+2/1<br><span class="Topic">Day 2: Let’s Get Started</span><br><span class="Read">Chapter 1</span><br><span class="Note">This is a note</span><br><span class="Due"></span><br><br>
 </td>
 <!--  2 > 1 -->
 </tr>
 <tr>
 <td class="even">
-2/4<br><span class="Topic">Day 3: Time to Work</span><br><span class="Read">Chapter 2</span><br><span class="Note"></span><br><br>
+2/4<br><span class="Topic">Day 3: Time to Work</span><br><span class="Read">Chapter 2</span><br><span class="Note"></span><br><span class="Due">Assignment 1</span><br><br>
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">cal <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/gg_calendar.html">gg_calendar</a></span>(<span class="dt">show =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">size =</span> <span class="dv">4</span>)</a></code></pre></div>
-<p><img src="reference/figures/README-gg-1.png" width="100%"></p>
+<p>See the package vignette for details about daily file syntax and rendering options.</p>
 </div>
 </div>
   </div>

@@ -24,7 +24,7 @@ span.Topic a:link, span.Topic a:visited{
 	color: blue;
 }
 
-span.reading, span.Reading {
+span.reading, span.Reading, span.Read, span.reading {
 	font-style: italic;
 	color: #36c;
 }
@@ -32,6 +32,13 @@ span.reading a:link, span.reading a:visited{
 	color: blue;
 }
 span.Reading a:link, span.Reading a:visited{
+	color: blue;
+}
+
+span.read a:link, span.read a:visited{
+	color: blue;
+}
+span.Read a:link, span.Read a:visited{
 	color: blue;
 }
 
