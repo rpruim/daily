@@ -54,7 +54,7 @@ span.topic a:link, span.topic a:visited{
     color: blue;
 }
 
-span.Topic a:link, span.topic a:visited{
+span.Topic a:link, span.Topic a:visited{
     color: blue;
 }
 
@@ -65,15 +65,15 @@ span.reading, span.Reading {
 span.reading a:link, span.reading a:visited{
     color: blue;
 }
-span.Reading a:link, span.reading a:visited{
+span.Reading a:link, span.Reading a:visited{
     color: blue;
 }
 
-span.vocab {
+span.vocab, span.Vocab {
     color: purple;
 }
 
-span.notes {
+span.notes, span.Notes {
     color: green;
 }
 
@@ -82,28 +82,32 @@ span.R {
     font-family: "Lucida Console", "Courier New", Monospace;
 }
 
-span.Note {
+span.Note, span.note {
     color: green;
 }
 
-span.activity {
+span.activity, span.Activity {
     color: #c63;
 }
-span.Activity {
-    color: #c63;
-}
+
 span.activity a:link, span.activity a:visited{
     color: brown;
 }
 
-span.Activity a:link, span.activity a:visited{
+span.Activity a:link, span.Activity a:visited{
     color: brown;
 }
-span.due {
+
+span.due, span.Due {
     /* color: #969; */
     color: red;
 }
+
 span.due a:link, span.due a:visited{
+    color: red;
+}
+
+span.Due a:link, span.Due a:visited{
     color: red;
 }
 
@@ -296,26 +300,26 @@ Fri
 
 <td class="odd">
 
-1/28<br><span class="Topic"></span><br><span class="Read"></span><br><span class="Note"></span><br><br>
+1/28<br><span class="Topic"></span><br><span class="Read"></span><br><span class="Note"></span><br><span class="Due"></span><br><br>
 
 </td>
 
 <td class="odd">
 
-1/29<br><span class="Topic"></span><br><span class="Read"></span><br><span class="Note"></span><br><br>
+1/29<br><span class="Topic"></span><br><span class="Read"></span><br><span class="Note"></span><br><span class="Due"></span><br><br>
 
 </td>
 
 <td class="odd">
 
 1/30<br><span class="Topic">Day 1:
-Introduction</span><br><span class="Read">Syllabus</span><br><span class="Note"></span><br><br>
+Introduction</span><br><span class="Read">Syllabus</span><br><span class="Note"></span><br><span class="Due"></span><br><br>
 
 </td>
 
 <td class="odd">
 
-1/31<br><span class="Topic"></span><br><span class="Read"></span><br><span class="Note"></span><br><br>
+1/31<br><span class="Topic"></span><br><span class="Read"></span><br><span class="Note"></span><br><span class="Due"></span><br><br>
 
 </td>
 
@@ -323,7 +327,8 @@ Introduction</span><br><span class="Read">Syllabus</span><br><span class="Note">
 
 2/1<br><span class="Topic">Day 2: Let’s Get
 Started</span><br><span class="Read">Chapter
-1</span><br><span class="Note">This is a note</span><br><br>
+1</span><br><span class="Note">This is a
+note</span><br><span class="Due"></span><br><br>
 
 </td>
 
@@ -337,7 +342,8 @@ Started</span><br><span class="Read">Chapter
 
 2/4<br><span class="Topic">Day 3: Time to
 Work</span><br><span class="Read">Chapter
-2</span><br><span class="Note"></span><br><br>
+2</span><br><span class="Note"></span><br><span class="Due">Assignment
+1</span><br><br>
 
 </td>
 

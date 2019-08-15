@@ -1,7 +1,7 @@
 Package: calendar
 Type: Package
 Title: Calendar Utilities
-Version: 0.1.0
+Version: 0.1.1
 Author: Randall Pruim
 Maintainer: Randall Pruim <rpruim@gmail.com>
 Description: Utilities for generating HTML/CSS calendars for classes.
