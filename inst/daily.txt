@@ -5,15 +5,6 @@ Spring 2019 -- 1:30 pm
 
 days:: MWF
 
-items::
-Topic;  b;      color=black;    T:
-Read;   i;      color=blue;     R:
-Assign; i;      color=green;    A:
-HW;     t;      color=green;    A:
-Due;    t;      color=red> Due: <!-- --;        D:
-Note;   b;      color=green;    N:
-Vocab;  t;      color=purple;   V:
-
 
 ===01/30/2019
 Topic:: Day 1: Introduction

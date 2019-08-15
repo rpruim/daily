@@ -342,8 +342,8 @@ note</span><br><span class="Due"></span><br><br>
 
 2/4<br><span class="Topic">Day 3: Time to
 Work</span><br><span class="Read">Chapter
-2</span><br><span class="Note"></span><br><span class="Due">Assignment
-1</span><br><br>
+2</span><br><span class="Note">indented
+note</span><br><span class="Due">Assignment 1</span><br><br>
 
 </td>
 

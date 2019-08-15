@@ -77,6 +77,18 @@ span.Due a:link, span.Due a:visited{
 	color: red;
 }
 
+span.hw, span.HW {
+	color: green;
+}
+
+span.hw a:link, span.hw a:visited{
+	color: green;
+}
+
+span.HW a:link, span.HW a:visited{
+	color: green;
+}
+
 body, td{
 	color: #000;
 	/* background: #fff; */

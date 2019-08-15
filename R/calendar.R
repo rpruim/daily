@@ -86,9 +86,9 @@ daily2cal <-
 
       }  # end if ^===
       # item to place on calendar of form label:: value
-      if (grepl("^[^\\s]+:: ", line)) {
+      if (grepl("^\\s*[^\\s]+:: ", line)) {
         parts <- stringr::str_split(line, pattern = ":: ", n = 2)[[1]]
-        label <- parts[1]; value <- parts[2]
+        label <- gsub("\\s", "", parts[1]); value <- parts[2]
         # check for and process URLs
         parts <- stringr::str_split(value, pattern = "@@", n = 2)[[1]]
         if (length(parts) > 1) {
