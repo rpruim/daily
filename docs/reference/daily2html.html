@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • calendar</title>
+<title>Render Daily File as HTML — daily2html • calendar</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,7 +32,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Render Daily File as HTML — daily2html" />
+
+<meta property="og:description" content="Render Daily File as HTML" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -50,7 +53,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -101,66 +104,71 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Render Daily File as HTML</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rpruim/calendar/blob/master/R/calendar.R'><code>R/calendar.R</code></a></small>
+    <div class="hidden name"><code>daily2html.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Render Daily File as HTML</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="calendar_css.html">calendar_css()</a></code> </p>
-        </td>
-        <td><p>Calendar CSS</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="daily2cal.html">daily2cal()</a></code> </p>
-        </td>
-        <td><p>Create Calendar from Daily File</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="daily2html.html">daily2html()</a></code> </p>
-        </td>
-        <td><p>Render Daily File as HTML</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gg_calendar.html">gg_calendar()</a></code> </p>
-        </td>
-        <td><p>Create gg Calendar</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="html_calendar.html">html_calendar()</a></code> </p>
-        </td>
-        <td><p>Create HTML Calendar</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>daily2html</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"daily.txt"</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>end</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>days</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>7</span>, <span class='kw'>items</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"95%"</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>path</th>
+      <td><p>path to "daily" file</p></td>
+    </tr>
+    <tr>
+      <th>start</th>
+      <td><p>start date</p></td>
+    </tr>
+    <tr>
+      <th>end</th>
+      <td><p>end date</p></td>
+    </tr>
+    <tr>
+      <th>days</th>
+      <td><p>a character string or a numeric vector indicating
+which days of the week to use by default.
+(1 = N = Sunday, 5 = R = Thursday, 7 = S = Saturday)</p></td>
+    </tr>
+    <tr>
+      <th>show</th>
+      <td><p>a numeric vector of days to show (Sunday = 1)</p></td>
+    </tr>
+    <tr>
+      <th>items</th>
+      <td><p>a character vector of items to display (or NULL for all)</p></td>
+    </tr>
+    <tr>
+      <th>width</th>
+      <td><p>width of HTML table used for calendar.</p></td>
+    </tr>
     </table>
-  </div>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>a character string of HTML code for the calendar</p>
+    
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
+
   </div>
 </div>
 
