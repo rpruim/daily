@@ -27,12 +27,12 @@ days2mask <- function(x) {
   NULL
 }
 
-
-#' Create Calendar from Daily File
+#' Render Daily File as HTML
 #'
-#' Create Calendar from Daily File
+#' Render Daily File as HTML
 #'
 #' @importFrom rlang %||%
+#' @importFrom rmarkdown yaml_front_matter
 #' @importFrom lubridate today floor_date mdy weeks month wday mday days
 #' @importFrom dplyr mutate arrange filter select group_by ungroup
 #' @importFrom dplyr slice pull do right_join bind_rows
@@ -40,6 +40,51 @@ days2mask <- function(x) {
 #' @importFrom glue glue
 #' @importFrom stringr str_split
 #' @import ggplot2
+#'
+#' @param path  path to "daily" file
+#' @param start start date
+#' @param end   end date
+#' @param days a character string or a numeric vector indicating
+#' which days of the week to use by default.
+#' (1 = N = Sunday, 5 = R = Thursday, 7 = S = Saturday)
+#' @param show a numeric vector of days to show (Sunday = 1)
+#' @param items a character vector of items to display (or NULL for all)
+#' @param width width of HTML table used for calendar.
+#' @return a character string of HTML code for the calendar
+#'
+#' @export
+daily2html <-
+  function(
+    path  = "daily.txt",
+    start = NULL,
+    end   = NULL,
+    days  = NULL,
+    show  = 1:7,
+    items = NULL,
+    width = "95%")
+  {
+    opt <- rmarkdown::yaml_front_matter(path)
+    opt$css <- opt$css %||% "default"
+    if (opt$css == "default") {
+      opt$css <- system.file("calendar.css", package = "calendar")
+    }
+    if (opt$css != "none") {
+      css <- readLines(opt$css) %>% paste(collapse = "\n")
+    }
+
+    Cal  <- daily2cal(path = path, start = start, end = end, days = days)
+    html <- html_calendar(Cal, show = show, items = items, width = width)
+
+    return(
+      paste(css, html, collapse = "\n")
+    )
+  }
+
+#' Create Calendar from Daily File
+#'
+#' Create Calendar from Daily File
+#'
+
 #'
 #' @param path  path to "daily" file
 #' @param start start date
@@ -60,19 +105,21 @@ daily2cal <-
   {
     current_date  <- NA
     Cal <- data.frame(date = NA) # , Topic = NA, note = NA)
-    options <- rmarkdown::yaml_front_matter(path)
+
+    opt <- rmarkdown::yaml_front_matter(path)
+
 
     # determine mask (ie, default days)
-    mask <- days2mask(days) %||% days2mask(options$days) %||% 1:7
+    mask <- days2mask(days) %||% days2mask(opt$days) %||% 1:7
 
     start <-
       start %||%
-      lubridate::mdy(options$start) %||%
+      lubridate::mdy(opt$start) %||%
       (lubridate::today() - lubridate::weeks(2))
 
     end <-
       end %||%
-      lubridate::mdy(options$end) %||%
+      lubridate::mdy(opt$end) %||%
       (lubridate::today() + lubridate::weeks(4))
 
     lines <- getSrcLines(srcfile(path), 1, 10000)

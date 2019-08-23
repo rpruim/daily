@@ -7,18 +7,16 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   out.width = "100%"
 )
-```
-
-```{r setup}
 library(calendar)
 library(dplyr)
 ```
+
 
 ## Overview
 
@@ -34,12 +32,16 @@ Calendar information can be culled from a "daily file" with with
 following structure.
 
 * Days are separated by an initial `===`
-* `===` may optionally be followed by a date
-* `===endofcal` terminates the calendar.  All lines after are ignored
+    * `===` may optionally be followed by a date
+    * `===endofcal` terminates the calendar.  All lines after are ignored.
+    
 * `<item type>:: <item information>` is rendered as information on
 a specific date.  For the HTML version, this is converted into a span
 so that the appearance can be altered using CSS.
-
+    * White space before `<item type>` is ignored.
+    * The space following `::` is required.
+    
+* Other lines are ignored when preparing the calendar.
 
 ### Example daily file
 
@@ -87,14 +89,24 @@ cal %>% html_calendar(show = 2:6) %>% cat()
 cal %>% gg_calendar(show = 2:6, size = 4)
 ```
 
+Alternatively, the daily file can be converted directly to HTML using `daily2html()`:
+
+```{r daily2html, results = "asis"}
+daily2html(path  = system.file("daily.txt", package = "calendar")) %>% cat()
+```
+
 ## Options
 
-The following options may be specified as arguments to `daily2cal()` or as part of the 
-YAML header of the daily file.
+The following options may be specified as arguments to `daily2cal()` or as part
+of the YAML header of the daily file.  Arguments take precedence over the YAML
+header.
 
 * `days`: default days. Can be specified as a numeric vector or as a character string (1 = N = Sunday, 5 = R = Thursday, 7 = S = Saturday, etc.)
 * `start`: start date for the calendar ("mm/dd/yyyy" format in YAML, date object as argument)
 * `end`: start date for the calendar ("mm/dd/yyyy" format in YAML, date object as argument)
+* `css`: the path to a file containing CSS for the calendar or `"default"` or `"none"`.
+This is only used by `daily2html()`. If missing, it will be treated as if the value
+is `"default"`, and a default CSS file is used.
 
 Other elements of the YAML header are ignored currently, but can be used to record
 information about your calendar.

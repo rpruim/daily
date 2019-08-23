@@ -17,6 +17,8 @@ Topic:: Day 2: Let's Get Started
 Read:: Chapter 1
 Note:: This is a note
 
+This text will not be displayed on the calendar.
+
 ===
 Topic:: Day 3: Time to Work
 Read:: Chapter 2
