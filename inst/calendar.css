@@ -20,8 +20,10 @@ span.topic a:link, span.topic a:visited{
 	color: blue;
 }
 
-span.Topic a:link, span.Topic a:visited{
-	color: blue;
+span.lab, span.Lab {
+	color: purple;
+	font-size: medium;
+	font-style: oblique;
 }
 
 span.reading, span.Reading, span.Read, span.reading {
