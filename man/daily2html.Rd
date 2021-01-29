@@ -4,8 +4,16 @@
 \alias{daily2html}
 \title{Render Daily File as HTML}
 \usage{
-daily2html(path = "daily.txt", start = NULL, end = NULL,
-  days = NULL, show = 1:7, items = NULL, width = "95\%")
+daily2html(
+  path = "daily.txt",
+  start = NULL,
+  end = NULL,
+  days = NULL,
+  show = 1:7,
+  items = NULL,
+  width = "95\%",
+  delim = "::\\\\s+"
+)
 }
 \arguments{
 \item{path}{path to "daily" file}
@@ -23,6 +31,8 @@ which days of the week to use by default.
 \item{items}{a character vector of items to display (or NULL for all)}
 
 \item{width}{width of HTML table used for calendar.}
+
+\item{delim}{delimeter for parsing compents of a day's entry}
 }
 \value{
 a character string of HTML code for the calendar

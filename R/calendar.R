@@ -50,6 +50,7 @@ days2mask <- function(x) {
 #' @param show a numeric vector of days to show (Sunday = 1)
 #' @param items a character vector of items to display (or NULL for all)
 #' @param width width of HTML table used for calendar.
+#' @inheritParams daily2cal
 #' @return a character string of HTML code for the calendar
 #'
 #' @export
@@ -61,7 +62,8 @@ daily2html <-
     days  = NULL,
     show  = 1:7,
     items = NULL,
-    width = "95%")
+    width = "95%",
+    delim = "::\\s+")
   {
     opt <- rmarkdown::yaml_front_matter(path)
     opt$css <- opt$css %||% "default"
@@ -72,7 +74,7 @@ daily2html <-
       css <- readLines(opt$css) %>% paste(collapse = "\n")
     }
 
-    Cal  <- daily2cal(path = path, start = start, end = end, days = days)
+    Cal  <- daily2cal(path = path, start = start, end = end, days = days, delim = delim)
     html <- html_calendar(Cal, show = show, items = items, width = width)
 
     return(

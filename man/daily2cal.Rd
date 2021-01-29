@@ -4,8 +4,13 @@
 \alias{daily2cal}
 \title{Create Calendar from Daily File}
 \usage{
-daily2cal(path = "daily.txt", start = NULL, end = NULL,
-  days = NULL)
+daily2cal(
+  path = "daily.txt",
+  start = NULL,
+  end = NULL,
+  days = NULL,
+  delim = "::\\\\s+"
+)
 }
 \arguments{
 \item{path}{path to "daily" file}
@@ -17,6 +22,8 @@ daily2cal(path = "daily.txt", start = NULL, end = NULL,
 \item{days}{a character string or a numeric vector indicating
 which days of the week to use by default.
 (1 = N = Sunday, 5 = R = Thursday, 7 = S = Saturday)}
+
+\item{delim}{delimeter for parsing compents of a day's entry}
 }
 \value{
 a data frame representing the calendar
