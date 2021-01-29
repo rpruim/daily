@@ -92,6 +92,7 @@ daily2html <-
 #' @param days a character string or a numeric vector indicating
 #' which days of the week to use by default.
 #' (1 = N = Sunday, 5 = R = Thursday, 7 = S = Saturday)
+#' @param delim delimeter for parsing compents of a day's entry
 #' @seealso [html_calendar()], [gg_calendar()]
 #' @return a data frame representing the calendar
 #' @export
@@ -100,7 +101,8 @@ daily2cal <-
     path  = "daily.txt",
     start = NULL,
     end   = NULL,
-    days  = NULL
+    days  = NULL,
+    delim = "::\\s+"
   )
   {
     current_date  <- NA
@@ -170,7 +172,7 @@ daily2cal <-
       }  # end if ^===
       # item to place on calendar of form label:: value
       if (grepl("^\\s*[^\\s]+:: ", line)) {
-        parts <- stringr::str_split(line, pattern = ":: ", n = 2)[[1]]
+        parts <- stringr::str_split(line, pattern = delim, n = 2)[[1]]
         label <- gsub("\\s", "", parts[1]); value <- parts[2]
         # check for and process URLs
         parts <- stringr::str_split(value, pattern = "@@", n = 2)[[1]]

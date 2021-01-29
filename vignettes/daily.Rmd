@@ -1,8 +1,8 @@
 ---
-title: "Using the calendar package"
+title: "Using the daily package"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{calendar}
+  %\VignetteIndexEntry{daily}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
   comment = "#>",
   out.width = "100%"
 )
-library(calendar)
+library(daily)
 library(dplyr)
 ```
 
@@ -23,8 +23,10 @@ library(dplyr)
 The primary use case consists of three steps
 
 1. Create a daily file (a text file with simple markup)
-2. Convert the daily file into a data fram with `daily2cal()`
+2. Convert the daily file into a data frame with `daily2cal()`
 3. Render the calendar as HTML or ggplot.
+
+Steps 2 and 3 can be combined into a single step.
 
 ## Step 1: Daily files
 
@@ -48,7 +50,7 @@ so that the appearance can be altered using CSS.
 Here is an example daily file (rendered below).
 
 ```{r, echo = FALSE, comment = NA}
-system.file("daily.txt", package = "calendar") %>%
+system.file("daily.txt", package = "daily") %>%
   readLines() %>%
   paste(collapse = "\n") %>%
   cat() 
@@ -57,15 +59,15 @@ system.file("daily.txt", package = "calendar") %>%
 ## Step 2: Converting to a data frame
 
 `daily2cal()` converts the daily file into a data frame.
-To use your own calendar, replace the `path` argument below with
+To use your own daily file, replace the `path` argument below with
 the path to your daily file.
 
 ```{r example}
-library(calendar)
+library(daily)
 library(dplyr)
 cal <-
   daily2cal(
-    path  = system.file("daily.txt", package = "calendar")
+    path  = system.file("daily.txt", package = "daily")
   ) 
 glimpse(cal)
 ```
@@ -92,7 +94,7 @@ cal %>% gg_calendar(show = 2:6, size = 4)
 Alternatively, the daily file can be converted directly to HTML using `daily2html()`:
 
 ```{r daily2html, results = "asis"}
-daily2html(path  = system.file("daily.txt", package = "calendar")) %>% cat()
+daily2html(path  = system.file("daily.txt", package = "daily")) %>% cat()
 ```
 
 ## Options

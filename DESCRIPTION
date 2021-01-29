@@ -1,7 +1,7 @@
 Package: daily
 Type: Package
 Title: Calendar Utilities
-Version: 0.2.0
+Version: 0.2.1
 Author: Randall Pruim
 Maintainer: Randall Pruim <rpruim@gmail.com>
 Description: Utilities for generating HTML/CSS calendars for classes.
@@ -19,8 +19,8 @@ Imports:
     ggplot2
 License: GPL-3
 Roxygen: list(markdown = TRUE)                                                  
-URL: https://github.com/rpruim/calendar                                              
-BugReports: https://github.com/rpruim/calendar/issues 
+URL: https://github.com/rpruim/daily                                              
+BugReports: https://github.com/rpruim/daily/issues 
 RoxygenNote: 6.1.1
 Suggests: 
     knitr,
