@@ -9,7 +9,8 @@ daily2cal(
   start = NULL,
   end = NULL,
   days = NULL,
-  delim = "::\\\\s+"
+  delim = "::\\\\s+",
+  daysep = "^===+"
 )
 }
 \arguments{
@@ -23,7 +24,9 @@ daily2cal(
 which days of the week to use by default.
 (1 = N = Sunday, 5 = R = Thursday, 7 = S = Saturday)}
 
-\item{delim}{delimeter for parsing compents of a day's entry}
+\item{delim}{delimeter for parsing items a day's entry}
+
+\item{daysep}{between day separator}
 }
 \value{
 a data frame representing the calendar

@@ -63,7 +63,8 @@ daily2html <-
     show  = 1:7,
     items = NULL,
     width = "95%",
-    delim = "::\\s+")
+    delim = "::\\s+",
+    daysep = "^===+")
   {
     opt <- rmarkdown::yaml_front_matter(path)
     opt$css <- opt$css %||% "default"
@@ -94,7 +95,8 @@ daily2html <-
 #' @param days a character string or a numeric vector indicating
 #' which days of the week to use by default.
 #' (1 = N = Sunday, 5 = R = Thursday, 7 = S = Saturday)
-#' @param delim delimeter for parsing compents of a day's entry
+#' @param delim delimeter for parsing items a day's entry
+#' @param daysep between day separator
 #' @seealso [html_calendar()], [gg_calendar()]
 #' @return a data frame representing the calendar
 #' @export
@@ -104,7 +106,8 @@ daily2cal <-
     start = NULL,
     end   = NULL,
     days  = NULL,
-    delim = "::\\s+"
+    delim = "::\\s+",
+    daysep = "^===+"
   )
   {
     current_date  <- NA
@@ -140,14 +143,14 @@ daily2cal <-
       }
 
       # stop processing if we hit endofcal
-      if (grepl("^===", line) &&
+      if (grepl(daysep, line) &&
           grepl("endofcal", line, ignore.case = TRUE)
           ) {
         done_with_cal <- TRUE
       }
 
       # next day
-      if (grepl("^===", line)) {
+      if (grepl(daysep, line)) {
         if (! skip_day) {
           # if not skipping, add to calendar and bump date
           Cal <-
@@ -167,7 +170,7 @@ daily2cal <-
         current_row <- data.frame(date = current_date)
 
         # set flag to skip new day's content
-        if (grepl("^===skip", line)) {
+        if (grepl(paste0(daysep, "skip"), line)) {
           skip_day <- TRUE
         }
 

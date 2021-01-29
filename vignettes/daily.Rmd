@@ -41,7 +41,8 @@ following structure.
 a specific date.  For the HTML version, this is converted into a span
 so that the appearance can be altered using CSS.
     * White space before `<item type>` is ignored.
-    * The space following `::` is required.
+    * White space following `::` is required.
+    * This delimiter can be modified in functions like `daily2html()` if `:: ` is needed for something else.
     
 * Other lines are ignored when preparing the calendar.
 

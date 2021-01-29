@@ -12,7 +12,8 @@ daily2html(
   show = 1:7,
   items = NULL,
   width = "95\%",
-  delim = "::\\\\s+"
+  delim = "::\\\\s+",
+  daysep = "^===+"
 )
 }
 \arguments{
@@ -32,7 +33,9 @@ which days of the week to use by default.
 
 \item{width}{width of HTML table used for calendar.}
 
-\item{delim}{delimeter for parsing compents of a day's entry}
+\item{delim}{delimeter for parsing items a day's entry}
+
+\item{daysep}{between day separator}
 }
 \value{
 a character string of HTML code for the calendar

@@ -131,7 +131,8 @@
   show <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>7</span>,
   items <span class='op'>=</span> <span class='cn'>NULL</span>,
   width <span class='op'>=</span> <span class='st'>"95%"</span>,
-  delim <span class='op'>=</span> <span class='st'>"::\\s+"</span>
+  delim <span class='op'>=</span> <span class='st'>"::\\s+"</span>,
+  daysep <span class='op'>=</span> <span class='st'>"^===+"</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -169,7 +170,11 @@ which days of the week to use by default.
     </tr>
     <tr>
       <th>delim</th>
-      <td><p>delimeter for parsing compents of a day's entry</p></td>
+      <td><p>delimeter for parsing items a day's entry</p></td>
+    </tr>
+    <tr>
+      <th>daysep</th>
+      <td><p>between day separator</p></td>
     </tr>
     </table>
 
