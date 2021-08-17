@@ -5,7 +5,7 @@
 #'
 #' @export
 calendar_css <- function() {
-  path <- system.file("calendar.css", package="calendar")
+  path <- system.file("calendar.css", package="daily")
   lines <- getSrcLines(srcfile(path), 1, 10000)
   paste(lines, collapse = "\n")
 }
@@ -69,7 +69,7 @@ daily2html <-
     opt <- rmarkdown::yaml_front_matter(path)
     opt$css <- opt$css %||% "default"
     if (opt$css == "default") {
-      opt$css <- system.file("calendar.css", package = "calendar")
+      opt$css <- system.file("calendar.css", package = "daily")
     }
     if (opt$css != "none") {
       css <- readLines(opt$css) %>% paste(collapse = "\n")
