@@ -212,10 +212,12 @@ daily2cal <-
         )
       ) %>%
       dplyr::arrange(date) %>%
-      dplyr::mutate(week  = as.numeric(ceiling(difftime(date, start, units = "weeks"))))
-    # month = lubridate::month(date, label = TRUE),
-    # day   = lubridate::wday(date),
-    # wday  = lubridate::wday(date, label = TRUE))
+      dplyr::mutate(
+        week  = as.numeric(ceiling(difftime(date, start, units = "weeks")))
+        # month = lubridate::month(date, label = TRUE),
+        # day   = lubridate::wday(date),
+        # wday  = lubridate::wday(date, label = TRUE)
+      )
   )
   }
 
