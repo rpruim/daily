@@ -1,3 +1,7 @@
+# daily 0.2.3
+
+* Fixed Sunday-related bug
+
 # daily 0.2.1
 
 * Added a `NEWS.md` file to track changes to the package.

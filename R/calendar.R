@@ -201,19 +201,21 @@ daily2cal <-
     Cal %>%
     filter(!is.na(date), date >= start)
 
+  # start/end will be a sunday/saturday spanning the dates needed
   start <- lubridate::floor_date(start, unit = "week")
+  end <- lubridate::ceiling_date(max(Cal$date), unit = "week") - lubridate::days(1)
+
   suppressMessages(
     Cal %>%
       right_join(
         data.frame(
           date = start +
-            lubridate::days(1: difftime(max(Cal$date), start,
-                                        units = "days"))
+            lubridate::days(0: difftime(end, start, units = "days"))
         )
       ) %>%
       dplyr::arrange(date) %>%
       dplyr::mutate(
-        week  = as.numeric(ceiling(difftime(date, start, units = "weeks")))
+        week  = 0.01 * lubridate::week(date) + lubridate::year(date) # as.numeric(ceiling(difftime(date, start, units = "weeks")))
         # month = lubridate::month(date, label = TRUE),
         # day   = lubridate::wday(date),
         # wday  = lubridate::wday(date, label = TRUE)
