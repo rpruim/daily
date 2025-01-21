@@ -33,7 +33,7 @@ days2mask <- function(x) {
 #'
 #' @importFrom rlang %||%
 #' @importFrom rmarkdown yaml_front_matter
-#' @importFrom lubridate today floor_date mdy weeks month wday mday days
+#' @importFrom lubridate today floor_date ceiling_date mdy weeks month wday mday days epiweek
 #' @importFrom dplyr mutate arrange filter select group_by ungroup
 #' @importFrom dplyr slice pull do right_join bind_rows
 #' @importFrom dplyr %>%
@@ -215,7 +215,7 @@ daily2cal <-
       ) %>%
       dplyr::arrange(date) %>%
       dplyr::mutate(
-        week  = 0.01 * lubridate::week(date) + lubridate::year(date) # as.numeric(ceiling(difftime(date, start, units = "weeks")))
+        week  = 0.01 * lubridate::epiweek(date) + lubridate::year(date) # as.numeric(ceiling(difftime(date, start, units = "weeks")))
         # month = lubridate::month(date, label = TRUE),
         # day   = lubridate::wday(date),
         # wday  = lubridate::wday(date, label = TRUE)
